@@ -25,6 +25,5 @@ jobs:
 
           cosign sign \
             --identity-token=${IDTOKEN} \
-            --audiences=sigstore \
             ghcr.io/imjasonh/ghoidc/image
 
