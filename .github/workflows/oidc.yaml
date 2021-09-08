@@ -1,6 +1,7 @@
 name: OIDC Token Test
 on:
   workflow_dispatch:
+  push: ['main']
 jobs:
   build:
     runs-on: ubuntu-latest
