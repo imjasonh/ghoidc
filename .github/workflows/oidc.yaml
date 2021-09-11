@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and sign
         run: |
-          IDTOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" $ACTIONS_ID_TOKEN_REQUEST_URL?audience=sigstore | jq -r '.value')
+          IDTOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sigstore" | jq -r '.value')
           COSIGN_EXPERIMENTAL=1 cosign sign \
             --identity-token=${IDTOKEN} \
             $(ko publish ./)
