@@ -19,9 +19,7 @@ jobs:
       - uses: imjasonh/setup-ko@v0.4
 
       - name: Build and sign
-        run: |
-          IDTOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sigstore" | jq -r '.value')
-          COSIGN_EXPERIMENTAL=1 cosign sign \
-            --identity-token=${IDTOKEN} \
-            $(ko publish ./)
+        env:
+          COSIGN_EXPERIMENTAL: 1
+        run: cosign sign $(ko publish ./)
 
